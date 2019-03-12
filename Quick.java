@@ -20,28 +20,45 @@ public class Quick{
  */
 
 	public static void debug(int[] data){
+		System.out.println(" ");
 		for (int r = 0; r < data.length; r++){
-			for (int c = 0; c < data[r].length;
+			System.out.print(data[r]+", ");
+		}
+	}
  public static int partition (int[] data, int start, int end){
    Random rand = new Random();
-   int randIndex = rand.nextInt(end - start);
+   int randIndex = rand.nextInt(end - start)+start; //FIX THIS`````````````````````````````````````````
    int pivot = data[randIndex];
    System.out.println(pivot + "");
+	// debug(data);
    if (start == end){ //base case
      return data[start];
    }
    int temp = data[randIndex];
    data[randIndex] = data[0];
+	 //debug(data);
    data[0] = temp;
-   start++;
-   for (int i = start; start < end;start++){
+	 start++;
+	 end--;
+	 //debug(data);
+   //start++;
+	 //debug(data);
+   for (int i = start; i != end;i++){
+		// System.out.println(data[i]);
      if (data[i] > data[0]){
        temp = data[i];
+			// debug(data);
        data[i] = data[end];
+			// debug(data);
        data[end] = temp;
+			 System.out.println(i + " " + end);
+			debug(data);
        end--;
-       start--;
+       i--;
      }
+		 //if (data[i] < data[0]){
+
+		 //}
    }
 /**
    //putting pivot back
@@ -63,7 +80,8 @@ public class Quick{
 
   public static void main(String args[]){
     int[] data1 = {10, 80, 30, 90, 40, 50, 70};
-    System.out.println(partition(data1,1,6) + "");
+    partition(data1,0,5);
+		System.out.println("");
     for (int i = 0; i < data1.length;i++){
       System.out.print(data1[i] + ", ");
     }
