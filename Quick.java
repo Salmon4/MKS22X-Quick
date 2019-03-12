@@ -45,7 +45,7 @@ public class Quick{
    Random rand = new Random();
    int randIndex = rand.nextInt(end - start)+start; //FIX THIS`````````````````````````````````````````
    int pivot = data[randIndex];
-   System.out.println("pivot: " + pivot + "");
+   //System.out.println("pivot: " + pivot + "");
 	// debug(data);
    if (start == end){
      return data[start];
@@ -62,15 +62,15 @@ public class Quick{
    for (int i = start; i != end;i++){
 		// System.out.println(data[i]);
      if (data[i] > data[start - 1]){//<---------------------------------------------------------
-       System.out.println("i: " + i + " end: " + end);
+       //System.out.println("i: " + i + " end: " + end);
        temp = data[i];
-			 debug(data);
+			 //debug(data);
        data[i] = data[end];
-			 debug(data);
+			 //debug(data);
        data[end] = temp;
 			// System.out.println(i + " " + end);
 			// System.out.println(i + "!!!!");
-			debug(data);
+			//debug(data);
        end--;
        i--;
      }
@@ -80,14 +80,14 @@ public class Quick{
    int pIndex = start-1;
    boolean found = false;
 	 //System.out.println(data.length+"size");
-   System.out.println(start-1 + " this");
+   //System.out.println(start-1 + " this");
 	 for (int i = start; i < end + 1 && !(found);i++){
 		 if (data[i] < data[start-1]){
-       System.out.println(data[i] + " & " + data[start-1]);
+      //System.out.println(data[i] + " & " + data[start-1]);
 			 pIndex += 1;
 		 }
 		 if (data[i] > data[start-1]){
-       System.out.println(data[i] + " & " + data[start-1]);
+       //System.out.println(data[i] + " & " + data[start-1]);
 			 found = true;
 		 }
 	 }
@@ -97,12 +97,12 @@ temp = data[start-1];
 data[start-1] = data[pIndex];
 
 data[pIndex] = temp;
-  return 0;//pIndex;
+  return pIndex;//pIndex;
  }
 
   public static void main(String args[]){
     int[] data1 = {90,60,50,40,30,70,20};
-    System.out.println(partition(data1,1,5));
+    System.out.println(partition(data1,1,5) + "ANS");
 		//System.out.println("");
     for (int i = 0; i < data1.length;i++){
       System.out.print(data1[i] + ", ");
