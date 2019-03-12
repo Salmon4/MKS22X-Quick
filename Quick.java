@@ -39,6 +39,7 @@ public class Quick{
 		}
 	}
  public static int partition (int[] data, int start, int end){
+    int origEnd = end;
 	 int newPivotIndex = 0;
 	 end++;
    Random rand = new Random();
@@ -80,7 +81,7 @@ public class Quick{
    boolean found = false;
 	 //System.out.println(data.length+"size");
    System.out.println(start-1 + " this");
-	 for (int i = start; i < data.length && !(found);i++){
+	 for (int i = start; i < end + 1 && !(found);i++){
 		 if (data[i] < data[start-1]){
        System.out.println(data[i] + " & " + data[start-1]);
 			 pIndex += 1;
@@ -101,7 +102,7 @@ data[pIndex] = temp;
 
   public static void main(String args[]){
     int[] data1 = {90,60,50,40,30,70,20};
-    System.out.println(partition(data1,1,6));
+    System.out.println(partition(data1,1,5));
 		//System.out.println("");
     for (int i = 0; i < data1.length;i++){
       System.out.print(data1[i] + ", ");
