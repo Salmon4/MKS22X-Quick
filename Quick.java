@@ -4,13 +4,14 @@ public class Quick{
 	/*return the value that is the kth smallest value of the array.
  */
  	public static int quickselect(int []data, int k){
+    k--;
 		int first = partition(data,0,data.length - 1);
 		while (k != first){
 			if (k < first){
 				first = partition(data,0,first);
 			}
 			if (k > first){
-				first = partition(data,first,data.length);
+				first = partition(data,first,data.length-1);
 			}
 		}
 		return data[first];
@@ -107,6 +108,9 @@ data[pIndex] = temp;
     for (int i = 0; i < data1.length;i++){
       System.out.print(data1[i] + ", ");
     }
+
+    int[] data2 = {90,60,50,40,30,70,20};
+    System.out.println("ans = " + quickselect(data2,4));
   }
 
 
