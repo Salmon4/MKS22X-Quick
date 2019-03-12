@@ -26,6 +26,7 @@ public class Quick{
 		}
 	}
  public static int partition (int[] data, int start, int end){
+	 end++;
    Random rand = new Random();
    int randIndex = rand.nextInt(end - start)+start; //FIX THIS`````````````````````````````````````````
    int pivot = data[randIndex];
@@ -80,7 +81,7 @@ public class Quick{
 
   public static void main(String args[]){
     int[] data1 = {10, 80, 30, 90, 40, 50, 70};
-    partition(data1,0,5);
+    partition(data1,0,4);
 		System.out.println("");
     for (int i = 0; i < data1.length;i++){
       System.out.print(data1[i] + ", ");
