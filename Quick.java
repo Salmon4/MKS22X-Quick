@@ -1,7 +1,20 @@
 import java.util.Random;
 public class Quick{
 
-
+	/*return the value that is the kth smallest value of the array.
+ */
+ 	public static int quickselect(int []data, int k){ 
+		int first = partition(data,0,data.length - 1);
+		while (k != first){
+			if (k < first){
+				first = partition(data,0,first);
+			}
+			if (k > first){
+				first = partition(data,first,data.length);
+			}		
+		}
+		return data[first];
+	}
 
 
 
@@ -19,7 +32,7 @@ public class Quick{
  *@return the index of the final position of the pivot element.
  */
 
-	public static void debug(int[] data){
+	private static void debug(int[] data){
 		System.out.println(" ");
 		for (int r = 0; r < data.length; r++){
 			System.out.print(data[r]+", ");
@@ -31,31 +44,33 @@ public class Quick{
    Random rand = new Random();
    int randIndex = rand.nextInt(end - start)+start; //FIX THIS`````````````````````````````````````````
    int pivot = data[randIndex];
-   System.out.println(pivot + "");
+   System.out.println("pivot: " + pivot + "");
 	// debug(data);
-   if (start == end){ //base case
+   if (start == end){ 
      return data[start];
    }
    int temp = data[randIndex];
-   data[randIndex] = data[0];
+   data[randIndex] = data[start];
 	 //debug(data);
-   data[0] = temp;
+   data[start] = temp;
+System.out.println("start: " + start);
 	 start++;
+System.out.println("start: " + start);
 	 end--;
 	 //debug(data);
    //start++;
 	 //debug(data);
    for (int i = start; i != end;i++){
 		// System.out.println(data[i]);
-     if (data[i] > data[0]){
+     if (data[i] > data[start--]){//<---------------------------------------------------------
        temp = data[i];
 			// debug(data);
        data[i] = data[end];
 			// debug(data);
        data[end] = temp;
-			 System.out.println(i + " " + end);
-			 System.out.println(i + "!!!!");
-			debug(data);
+			// System.out.println(i + " " + end);
+			// System.out.println(i + "!!!!");
+			//debug(data);
        end--;
        i--;
      }
@@ -75,8 +90,8 @@ public class Quick{
    //putting pivot back
    int pIndex = 0;
    boolean found = false;
-	 System.out.println(data.length+"size");
-	 for (int i = 1; i < data.length && !(found);i++){
+	 //System.out.println(data.length+"size");
+	 for (int i = start; i < data.length && !(found);i++){
 		 if (data[i] < data[0]){
 			 pIndex += 1;
 		 }
@@ -98,17 +113,17 @@ public class Quick{
 	**/
 
 //System.out.println("INDEX: " + newPivotIndex + "");
-temp = data[0];
-data[0] = data[pIndex];
+temp = data[start];
+data[start] = data[pIndex];
 
 data[pIndex] = temp;
   return 0;//pIndex;
  }
 
   public static void main(String args[]){
-    int[] data1 = {10, 80, 30, 90, 40, 50, 70};
-    partition(data1,0,6);
-		System.out.println("");
+    int[] data1 = {90,60,50,40,30,70,20};
+    System.out.println(partition(data1,1,6));
+		//System.out.println("");
     for (int i = 0; i < data1.length;i++){
       System.out.print(data1[i] + ", ");
     }
