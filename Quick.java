@@ -59,6 +59,7 @@ public class Quick{
        end--;
        i--;
      }
+		 // PUT PIVOT BACK IN PLACE HERE MAYBE WITH AN INDEX INCREASING VARIABLE
 		 /**
 		 if (data[i] < data[0]){
 			 System.out.println(i + "!!!!");
