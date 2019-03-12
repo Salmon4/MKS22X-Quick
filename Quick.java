@@ -4,7 +4,7 @@ public class Quick{
 	/*return the value that is the kth smallest value of the array.
  */
  	public static int quickselect(int []data, int k){
-    k--;
+    //k--;
 		int first = partition(data,0,data.length - 1);
 		while (k != first){
 			if (k < first){
