@@ -61,8 +61,21 @@ public class Quick{
    //start++;
 	 //debug(data);
    for (int i = start; i != end;i++){
+	boolean moved = false;
+	if (data[i] == data[start - 1]){
+		rand = new Random();
+		int randInt = rand.nextInt(2);
+		if (randInt == 0){
+			temp = data[i];
+			data[i] = data[end];
+			data[end] = temp;
+			end--;
+			i--;
+			moved = true;			
+		}
+	}
 		// System.out.println(data[i]);
-     if (data[i] > data[start - 1]){//<---------------------------------------------------------
+     if (!(moved) && data[i] > data[start - 1]){//<---------------------------------------------------------
        //System.out.println("i: " + i + " end: " + end);
        temp = data[i];
 			 //debug(data);
