@@ -1,6 +1,19 @@
 import java.util.Random;
 public class Quick{
 
+	public static void quicksort(int[] data){
+		quicksortHelper(data, 0 , data.length - 1);
+	}
+
+	private static void quicksortHelper(int[] data, int lo, int hi){
+		if (lo >= hi){
+			return;
+		}
+		int pivot = partition(data,lo,hi);
+		quicksortHelper(data,lo,pivot);
+		quicksortHelper(data,pivot,hi);
+	}
+
 	/*return the value that is the kth smallest value of the array.
  */
  	public static int quickselect(int []data, int k){
@@ -124,7 +137,13 @@ data[pIndex] = temp;
 
     int[] data2 = {90,60,50,40,30,70,20};
     System.out.println("ans = " + quickselect(data2,4));
-  }
+	
+	 int[] data3 = {90,60,50,40,30,70,20};
+	quicksort(data3);
+	  for (int i = 0; i < data3.length;i++){
+      System.out.print(data1[i] + ", ");
+    }
+	}
 
 
 }
