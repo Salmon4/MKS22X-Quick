@@ -10,8 +10,8 @@ public class Quick{
 			return;
 		}
 		int pivot = partition(data,lo,hi);
-		quicksortHelper(data,lo,pivot);
-		quicksortHelper(data,pivot,hi);
+		quicksortHelper(data,lo,pivot-1);
+		quicksortHelper(data,pivot+1,hi);
 	}
 
 	/*return the value that is the kth smallest value of the array.
@@ -20,11 +20,13 @@ public class Quick{
     //k--;
 		int first = partition(data,0,data.length - 1);
 		while (k != first){
+			boolean go = true;
 			if (k < first){
-				first = partition(data,0,first);
+			 go = false;
+				first = partition(data,0,first-1);
 			}
-			if (k > first){
-				first = partition(data,first,data.length-1);
+			if (go && k > first){
+				first = partition(data,first+1,data.length-1);
 			}
 		}
 		return data[first];
@@ -57,22 +59,22 @@ public class Quick{
 	 int newPivotIndex = 0;
 	 end++;
    Random rand = new Random();
-   int randIndex = rand.nextInt(end - start)+start; //FIX THIS`````````````````````````````````````````
-   int pivot = data[randIndex];
-   //System.out.println("pivot: " + pivot + "");
+   int median = (end-start)/2;//rand.nextInt(end - start)+start;
+   int pivot = data[median + start];
+   System.out.println("pivot: " + pivot + "");
 	// debug(data);
    if (start == end){
      return data[start];
    }
-   int temp = data[randIndex];
-   data[randIndex] = data[start];
+   int temp = pivot;
+   data[median + start] = data[start];
 	 //debug(data);
    data[start] = temp;
 	 start++;
 	 end--;
-	 //debug(data);
+	 debug(data);
    //start++;
-	 //debug(data);
+	 //System.out.println(start + " <-");
    for (int i = start; i != end;i++){
 	boolean moved = false;
 	if (data[i] == data[start - 1]){
@@ -84,7 +86,7 @@ public class Quick{
 			data[end] = temp;
 			end--;
 			i--;
-			moved = true;			
+			moved = true;
 		}
 	}
 		// System.out.println(data[i]);
@@ -101,6 +103,7 @@ public class Quick{
        end--;
        i--;
      }
+		 debug(data);
    }
 
    //putting pivot back
@@ -128,20 +131,20 @@ data[pIndex] = temp;
  }
 
   public static void main(String args[]){
-    int[] data1 = {90,60,50,40,30,70,20};
+    int[] data1 = {1,100,200,700,100,600,500,300};
     System.out.println(partition(data1,1,5) + "ANS");
-		//System.out.println("");
+		System.out.println("");
     for (int i = 0; i < data1.length;i++){
       System.out.print(data1[i] + ", ");
     }
 
     int[] data2 = {90,60,50,40,30,70,20};
-    System.out.println("ans = " + quickselect(data2,4));
-	
+  //System.out.println("ans = " + quickselect(data1,4));
+
 	 int[] data3 = {90,60,50,40,30,70,20};
-	quicksort(data3);
+	//quicksort(data3);
 	  for (int i = 0; i < data3.length;i++){
-      System.out.print(data1[i] + ", ");
+      //System.out.print(data1[i] + ", ");
     }
 	}
 
