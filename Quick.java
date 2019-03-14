@@ -61,7 +61,7 @@ public class Quick{
    Random rand = new Random();
    int median = (end-start)/2;//rand.nextInt(end - start)+start;
    int pivot = data[median + start];
-   System.out.println("pivot: " + pivot + "");
+  // System.out.println("pivot: " + pivot + "");
 	// debug(data);
    if (start == end){
      return data[start];
@@ -72,7 +72,7 @@ public class Quick{
    data[start] = temp;
 	 start++;
 	 end--;
-	 debug(data);
+	 //debug(data);
    //start++;
 	 //System.out.println(start + " <-");
    for (int i = start; i != end;i++){
@@ -103,7 +103,7 @@ public class Quick{
        end--;
        i--;
      }
-		 debug(data);
+		// debug(data);
    }
 
    //putting pivot back
@@ -139,7 +139,7 @@ data[pIndex] = temp;
     }
 
     int[] data2 = {90,60,50,40,30,70,20};
-  //System.out.println("ans = " + quickselect(data1,4));
+  System.out.println("ans = " + quickselect(data2,4));
 
 	 int[] data3 = {90,60,50,40,30,70,20};
 	//quicksort(data3);
