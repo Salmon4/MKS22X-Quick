@@ -9,9 +9,13 @@ public class Quick{
 		if (lo >= hi){
 			return;
 		}
+		//debug(data);
 		int pivot = partition(data,lo,hi);
+		debug(data);
 		quicksortHelper(data,lo,pivot-1);
+		debug(data);
 		quicksortHelper(data,pivot+1,hi);
+		debug(data);
 	}
 
 	/*return the value that is the kth smallest value of the array.
@@ -59,9 +63,9 @@ public class Quick{
 	 int newPivotIndex = 0;
 	 end++;
    Random rand = new Random();
-   int median = (end-start)/2;//rand.nextInt(end - start)+start;
+   int median = (end-start-1)/2;//rand.nextInt(end - start)+start;
    int pivot = data[median + start];
-  // System.out.println("pivot: " + pivot + "");
+   System.out.println("pivot: " + pivot + "");
 	// debug(data);
    if (start == end){
      return data[start];
@@ -138,13 +142,14 @@ data[pIndex] = temp;
       System.out.print(data1[i] + ", ");
     }
 
-    int[] data2 = {90,60,50,40,30,70,20};
-  System.out.println("ans = " + quickselect(data2,4));
+    int[] data2 = {100,300,6,300,100,200,0};
+  System.out.println("ans = " + quickselect(data2,5));
 
-	 int[] data3 = {90,60,50,40,30,70,20};
-	//quicksort(data3);
+	 int[] data3 = {10,9,8,7,6,5,4,2,1,11};
+	quicksort(data3);
+	System.out.println("ans: ");
 	  for (int i = 0; i < data3.length;i++){
-      //System.out.print(data1[i] + ", ");
+      System.out.print(data3[i] + ", ");
     }
 	}
 
