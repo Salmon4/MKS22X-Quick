@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.*;
 import java.util.Arrays;
 public class Quick{
 
@@ -95,7 +95,7 @@ public class Quick{
    data[start] = temp;
 	 pivotIndex = start;
 	 start++;
-
+Random a = new Random();
 while (start < end){
 	if (data[start] < pivot){
 		start += 1;
@@ -103,7 +103,7 @@ while (start < end){
 	else{
 
 		if (data[start] == pivot){
-			if (start % 2 == 1){
+			if (a.nextInt(2) == 1){
 				temp = data[start];
 				data[start] = data[end];
 				data[end] = temp;
