@@ -100,13 +100,14 @@ public class Quick{
 while (start != end){
 //	System.out.println("start: " + start + " end: " + end);
 //	int currentIndex = start;
-	int currentValue = data[start];
-	if (currentValue < pivot){
+	//int currentValue = data[start];
+	if (data[start] < pivot){
 		start++;
 	}
+
 	else{
 
-		if (currentValue == pivot){
+		if (data[start] == pivot){
 			//rand = new Random();
 		  //int randInt = rand.nextInt(2);
 			if (start % 2 == 1){
@@ -127,6 +128,7 @@ while (start != end){
 				end--;
 			}
 	}
+	
 	//debug(data);
 	//System.out.println("start: " + start + " end: " + end);
 }
