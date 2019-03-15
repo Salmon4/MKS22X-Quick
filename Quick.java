@@ -60,43 +60,69 @@ public class Quick{
 		}
 	}
  public static int partition (int[] data, int start, int end){
-	 int newPivotIndex = 0;
+	 //int newPivotIndex = 0;
 	 //end++;
-   Random rand = new Random();
-   int median = (end-start)/2;//rand.nextInt(end - start)+start;
-	 int pivotIndex = median + start;
-   int pivot = data[pivotIndex];
+   //Random rand;// = new Random();
+   int median;// = (end+start)/2;//rand.nextInt(end - start)+start;
+	 int middle = data[(end+start)/2];
+	 int first = data[start];
+	 int last = data[end];
+//	 System.out.println(first + " " + middle + " " + last);
+
+	 if ((first < middle && first > last) || (first > middle && first < last)){
+		 median = start;
+	//	 System.out.println("works");
+	 }
+	 	else{
+				if ((last < middle && last > first) || (last > middle && last < first)){
+					median = end;
+				}
+				else{
+					median = (end+start)/2;
+				}
+		}
+
+	 int pivotIndex = median;
+   int pivot = data[median];
 	// System.out.println(pivot + "pivot");
    if (start == end){
      return data[start];
    }
+	// debug(data);
+	// System.out.println("start: " + pivot);
    int temp = pivot;
-   data[median + start] = data[start];
+   data[median] = data[start];
    data[start] = temp;
 	 pivotIndex = start;
 	 start++;
+	 //debug(data);
 //debug(data);
 while (start != end){
 //	System.out.println("start: " + start + " end: " + end);
-	int currentIndex = start;
-	int currentValue = data[currentIndex];
+//	int currentIndex = start;
+	int currentValue = data[start];
 	if (currentValue < pivot){
 		start++;
 	}
 	else{
+
 		if (currentValue == pivot){
-			rand = new Random();
-		  int randInt = rand.nextInt(2);
-			if (randInt == 0){
-				temp = data[currentIndex];
-				data[currentIndex] = data[end];
+			//rand = new Random();
+		  //int randInt = rand.nextInt(2);
+			if (start % 2 == 1){
+				temp = data[start];
+				data[start] = data[end];
 				data[end] = temp;
 				end--;
 			}
+			else{
+				start++;
+			}
 		}
 			else{
-				temp = data[currentIndex];
-				data[currentIndex] = data[end];
+				//System.out.println("y");
+				temp = data[start];
+				data[start] = data[end];
 				data[end] = temp;
 				end--;
 			}
@@ -104,30 +130,27 @@ while (start != end){
 	//debug(data);
 	//System.out.println("start: " + start + " end: " + end);
 }
-
-   int pIndex = pivotIndex;
-   boolean found = false;
-	 for (int i = pivotIndex+1; i < end + 1 && !(found);i++){
-		 if (data[i] < data[pivotIndex]){
-			 pIndex += 1;
-		 }
-		 if (data[i] > data[pivotIndex]){
-			 found = true;
-		 }
-	 }
-temp = data[pivotIndex];
-data[pivotIndex] = data[pIndex];
-
-data[pIndex] = temp;
 //debug(data);
-  return pIndex;
+//System.out.println("start: " + start+"");
+if (pivot > data[start]){
+	temp = pivot;
+	data[pivotIndex] = data[start];
+	data[start] = temp;
+	return start;
+}else{
+	temp = pivot;
+	data[pivotIndex] = data[start-1];
+	data[start-1] = temp;
+	return start - 1;
+}
  }
 
   public static void main(String args[]){
 
-/**
-    int[] data6 = {1,100,200,700,100,600,500,300};
-    System.out.println(partition(data6,0,7) + "ANS");
+
+    int[] data6 = {0,1,2,3,50,60,50,50,40,20,30,11,12,13};
+    System.out.println(partition(data6,4,10) + "ANS");
+		//quicksort(data6);
 		System.out.println("");
     for (int i = 0; i < data6.length;i++){
       System.out.print(data6[i] + ", ");
@@ -204,7 +227,7 @@ if (data[i] == data[start - 1]){
         btime+= t2 - t1;
         if(!Arrays.equals(data1,data2)){
           System.out.println("FAIL TO SORT!");
-					debug(data2);
+					//debug(data2);
           System.exit(0);
         }
       }
@@ -253,6 +276,7 @@ for(int size = 100000; size == 100000; size*=2){
 
 }
 **/
+
 	}
 
 
