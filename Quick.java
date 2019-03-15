@@ -95,45 +95,32 @@ public class Quick{
    data[start] = temp;
 	 pivotIndex = start;
 	 start++;
-	 //debug(data);
-//debug(data);
-while (start != end){
-//	System.out.println("start: " + start + " end: " + end);
-//	int currentIndex = start;
-	//int currentValue = data[start];
-	if (data[start] < pivot){
-		start++;
-	}
 
+while (start < end){
+	if (data[start] < pivot){
+		start += 1;
+	}
 	else{
 
 		if (data[start] == pivot){
-			//rand = new Random();
-		  //int randInt = rand.nextInt(2);
 			if (start % 2 == 1){
 				temp = data[start];
 				data[start] = data[end];
 				data[end] = temp;
-				end--;
+				end -= 1;
 			}
 			else{
-				start++;
+				start += 1;
 			}
 		}
 			else{
-				//System.out.println("y");
 				temp = data[start];
 				data[start] = data[end];
 				data[end] = temp;
-				end--;
+				end -= 1;
 			}
 	}
-	
-	//debug(data);
-	//System.out.println("start: " + start + " end: " + end);
 }
-//debug(data);
-//System.out.println("start: " + start+"");
 if (pivot > data[start]){
 	temp = pivot;
 	data[pivotIndex] = data[start];
