@@ -20,7 +20,34 @@ public class Quick{
 	}
 
 	private int[] partitionDutch(int[] data,int start, int end){
-		
+			if (end == start){
+				return data;
+			}
+			//finding the median
+			int median;// = (end+start)/2;//rand.nextInt(end - start)+start;
+			int middle = data[(end+start)/2];
+			int first = data[start];
+			int last = data[end];
+			if ((first < middle && first > last) || (first > middle && first < last)){
+	 		 median = start;
+	 	 	}
+	 	 	else{
+	 				if ((last < middle && last > first) || (last > middle && last < first)){
+	 					median = end;
+	 				}
+	 				else{
+	 					median = (end+start)/2;
+	 				}
+	 		}
+			int pivotIndex = median;
+			int temp = data[pivotIndex];
+			data[pivotIndex] = data[start];
+			data[start] = temp;
+			pivotIndex = start;
+			int pivot = data[pivotIndex];
+			//swapping median and start
+
+
     }
 	/*return the value that is the kth smallest value of the array.
  */
