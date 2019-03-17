@@ -3,9 +3,22 @@ import java.util.Arrays;
 public class Quick{
 
 	public static void quicksort(int[] data){
-		quicksortHelper(data, 0 , data.length - 1);
+		//quicksortHelper(data, 0 , data.length - 1);
+		quicksortDutchHelper(data,0,data.length-1);
 	}
 
+	private static void quicksortDutchHelper(int[] data, int start, int end){
+		if (start >= end){
+			return;
+		}
+		else{
+		//	System.out.println("1: " + data.length);
+			int[] data2 = partitionDutch(data,start,end);
+			//System.out.println("1: " + data2.length);
+			quicksortDutchHelper(data,start,data2[0]);
+			quicksortDutchHelper(data,data2[1],end);
+		}
+	}
 	private static void quicksortHelper(int[] data, int lo, int hi){
 		if (lo >= hi){
 			return;
@@ -13,19 +26,26 @@ public class Quick{
 		//debug(data);
 		int pivot = partition(data,lo,hi);
 		//debug(data);
+
 		quicksortHelper(data,lo,pivot-1);
 		//debug(data);
 		quicksortHelper(data,pivot+1,hi);
 		//debug(data);
 	}
 
-	private int[] partitionDutch(int[] data,int start, int end){
+	private static int[] partitionDutch(int[] data,int start, int end){
 			if (end == start){
-				return data;
+				int[] thing = new int[2];
+				thing[0] = start;
+				thing[1] = end;
+				return thing;
 			}
 			//finding the median
 			int median;// = (end+start)/2;//rand.nextInt(end - start)+start;
+			//System.out.println((end+start)/2);
+			//System.out.println("" + end + " " + start + " ");
 			int middle = data[(end+start)/2];
+			//System.out.println("" + middle);
 			int first = data[start];
 			int last = data[end];
 			if ((first < middle && first > last) || (first > middle && first < last)){
@@ -39,15 +59,47 @@ public class Quick{
 	 					median = (end+start)/2;
 	 				}
 	 		}
+			//swapping median and start
 			int pivotIndex = median;
 			int temp = data[pivotIndex];
 			data[pivotIndex] = data[start];
 			data[start] = temp;
 			pivotIndex = start;
 			int pivot = data[pivotIndex];
-			//swapping median and start
 
 
+			int currentIndex = start;
+			while (currentIndex <= end){
+				if (data[currentIndex] > pivot){
+					temp = data[currentIndex];
+					data[currentIndex] = data[end];
+					data[end] = temp;
+					end -= 1;
+				}
+				else{
+					if (data[currentIndex] < pivot){
+						temp = data[currentIndex];
+						data[currentIndex] = data[start];
+						data[start] = temp;
+						start++;
+						currentIndex++;
+					}
+					else{
+						currentIndex++;
+					}
+				}
+			}
+
+			//int length = (end + 1) - (start - 1);
+			int[] ans = new int[2];
+			ans[0] = start;
+			ans[1] = end;
+			//System.out.println(ans[1]);
+			//for (int i = 0; i < length; i++){
+			//	ans[i] = data[start - 1];
+			//	start++;
+			//}
+			return ans;
     }
 	/*return the value that is the kth smallest value of the array.
  */
@@ -167,13 +219,13 @@ if (pivot > data[start]){
   public static void main(String args[]){
 
 
-    int[] data6 = {0,1,2,3,50,60,50,50,40,20,30,11,12,13};
-    System.out.println(partition(data6,4,10) + "ANS");
+  //  int[] data6 = {0,1,2,3,50,60,50,50,40,20,30,11,12,13};
+  //  System.out.println(partition(data6,4,10) + "ANS");
 		//quicksort(data6);
-		System.out.println("");
-    for (int i = 0; i < data6.length;i++){
-      System.out.print(data6[i] + ", ");
-    }
+	//	System.out.println("");
+  //  for (int i = 0; i < data6.length;i++){
+  //    System.out.print(data6[i] + ", ");
+//    }
 /**
     int[] data7 = {100,300,6,300,100,200,0};
   System.out.println("ans = " + quickselect(data7,5));
@@ -244,6 +296,7 @@ if (data[i] == data[start - 1]){
         Arrays.sort(data1);
         t2 = System.currentTimeMillis();
         btime+= t2 - t1;
+				System.out.println("works");
         if(!Arrays.equals(data1,data2)){
           System.out.println("FAIL TO SORT!");
 					//debug(data2);
