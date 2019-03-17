@@ -92,8 +92,8 @@ public class Quick{
 
 			//int length = (end + 1) - (start - 1);
 			int[] ans = new int[2];
-			ans[0] = start;
-			ans[1] = end;
+			ans[0] = start-1;
+			ans[1] = end+2;
 			//System.out.println(ans[1]);
 			//for (int i = 0; i < length; i++){
 			//	ans[i] = data[start - 1];
