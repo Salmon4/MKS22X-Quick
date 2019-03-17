@@ -93,7 +93,7 @@ public class Quick{
 			//int length = (end + 1) - (start - 1);
 			int[] ans = new int[2];
 			ans[0] = start-1;
-			ans[1] = end+2;
+			ans[1] = end+1;
 			//System.out.println(ans[1]);
 			//for (int i = 0; i < length; i++){
 			//	ans[i] = data[start - 1];
@@ -296,7 +296,7 @@ if (data[i] == data[start - 1]){
         Arrays.sort(data1);
         t2 = System.currentTimeMillis();
         btime+= t2 - t1;
-				System.out.println("works");
+				//System.out.println("works");
         if(!Arrays.equals(data1,data2)){
           System.out.println("FAIL TO SORT!");
 					//debug(data2);
