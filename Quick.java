@@ -19,6 +19,19 @@ public class Quick{
 			quicksortDutchHelper(data,data2[1],end);
 		}
 	}
+
+	public static void insertionsort(int[] data, int lo, int hi){
+		int orig;
+		for (int i = lo+1; i <= hi;i++){
+			orig = data[i];
+			int c = i - 1;
+			while (c >= 0 && data[c] > orig){//left number is bigger
+				data[c+1] = data[c];
+				data[c] = orig;
+				c--;
+			}
+		}
+	}
 	private static void quicksortHelper(int[] data, int lo, int hi){
 		if (lo >= hi){
 			return;
