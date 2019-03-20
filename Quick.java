@@ -11,25 +11,35 @@ public class Quick{
 		if (start >= end){
 			return;
 		}
-		else{
+		//else{
 		//	System.out.println("1: " + data.length);
 			int[] data2 = partitionDutch(data,start,end);
 			//System.out.println("1: " + data2.length);
+			if (data2[0] - start <= 50){
+				insertionsort(data,start,data2[0]);
+			}
+			else{
 			quicksortDutchHelper(data,start,data2[0]);
+		}
+			if (end - data2[1] <= 50){
+				insertionsort(data,data2[1],end);
+			}
+			else{
 			quicksortDutchHelper(data,data2[1],end);
 		}
+	//	}
 	}
 
 	public static void insertionsort(int[] data, int lo, int hi){
-		int orig;
-		for (int i = lo+1; i <= hi;i++){
-			orig = data[i];
-			int c = i - 1;
-			while (c >= 0 && data[c] > orig){//left number is bigger
-				data[c+1] = data[c];
-				data[c] = orig;
+		for (int i = lo; i <= hi;i++){
+			int orig = data[i];
+			int c = i;
+			while (c > lo && data[c-1] > orig){//left number is bigger
+				data[c] = data[c-1];
+				//data[c] = orig;
 				c--;
 			}
+			data[c] = orig;
 		}
 	}
 	private static void quicksortHelper(int[] data, int lo, int hi){
